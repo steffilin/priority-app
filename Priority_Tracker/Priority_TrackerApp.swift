@@ -1,8 +1,8 @@
 //
 //  Priority_TrackerApp.swift
-//  Priority_Tracker
+//  Priority Tracker
 //
-//  Created by Steffi Lin on 10/24/22.
+//  Created by Steffi Lin on 10/16/22.
 //
 
 import SwiftUI
@@ -11,7 +11,15 @@ import SwiftUI
 struct Priority_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(tasks: Task.sampleData)
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }
