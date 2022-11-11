@@ -11,7 +11,7 @@ struct ContentView: View {
     
 //    @State public static var showingHome: Bool = true
     
-    
+//    @Binding var showHome:Bool
     
     let tasks: [Task]
 //    ForEach(tasks, id: \.id) {task in
@@ -55,6 +55,7 @@ struct ContentView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
         
     .padding()
         

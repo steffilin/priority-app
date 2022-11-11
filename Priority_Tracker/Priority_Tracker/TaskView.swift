@@ -15,11 +15,10 @@ struct TaskView: View {
     @State var description: String = ""
 //    @State var placeholder: String = "Description"
     
+    @Environment(\.presentationMode) var presentation
+    @State var showHome = false
+    
     var body: some View {
-        
-//        ContentView(showingHome: false)
-        
-        NavigationView {
             VStack {
                 Text("Add a Task")
                     .font(Font.mainTitle)
@@ -57,8 +56,6 @@ struct TaskView: View {
                         .cornerRadius(10)
                         .foregroundColor(Color.bg_gray)
                     VStack {
-    //                    TextField("Description", text: $description, axis: .vertical)
-    //                        .frame(width: 318.0 - 28, height: 251.0 - 28, alignment: .top)
                         TextEditorWithPlaceholder(text: $description)
 
                         
@@ -69,12 +66,13 @@ struct TaskView: View {
                 
                 .padding(.bottom)
                 
-                NavigationLink(destination: ContentView(tasks: Task.tasks)) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 56))
-                        .padding(.trailing)
+//                NavigationLink(destination: ContentView(tasks: Task.tasks)) {
+//                    Image(systemName: "plus.circle.fill")
+//                        .font(.system(size: 56))
+//                        .padding(.trailing)
                 }
                 Button("Add") {
+                    
                     
 //                    let task = Task(title: title, due_date: due_date, description: description)
                     task.setTitle(title: title)
@@ -83,6 +81,8 @@ struct TaskView: View {
                     Task.addTask(task: task)
 
                     Task.printAllTasks()
+                    showHome.toggle()
+//                    presentation.wrappedValue.dismiss()
                     
 //                    ContentView.showingHome = false
                     
@@ -94,20 +94,40 @@ struct TaskView: View {
                     .font(Font.buttonText)
                     .frame(width: 318.0, height: 50.0, alignment: .leading)
                     .disabled(title.isEmpty)
+                    .fullScreenCover(isPresented: $showHome) {
+//                        withoutAnimation {
+//                            ContentView(tasks: Task.tasks)
+//                        }
+                        ContentView(tasks: Task.tasks)
+                        
+                    }
+                    
             
                 
                 Spacer()
                 
-            }
-        }
+            
         
+            }
+        
+    
         
     }
-}
+
 
 struct TaskView_Previews: PreviewProvider {
     static var previews: some View {
         TaskView()
         
+    }
+}
+
+extension View {
+    func withoutAnimation(action: @escaping () -> Void) {
+        var transaction = Transaction()
+        transaction.disablesAnimations = true
+        withTransaction(transaction) {
+            action()
+        }
     }
 }
