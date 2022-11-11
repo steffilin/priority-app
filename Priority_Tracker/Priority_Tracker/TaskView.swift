@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TaskView: View {
-    @State private var task = Task.Data()
+//    @State private var task = Task.Data()
+    @StateObject var task = Task(title: "", due_date: Date(), description: "")
     @State var title: String = ""
     @State var due_date: Date = Date()
     @State var description: String = ""
@@ -68,10 +69,17 @@ struct TaskView: View {
                 
                 .padding(.bottom)
                 
-               
+                NavigationLink(destination: ContentView(tasks: Task.tasks)) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 56))
+                        .padding(.trailing)
+                }
                 Button("Add") {
                     
-                    let task = Task(title: title, due_date: due_date, description: description)
+//                    let task = Task(title: title, due_date: due_date, description: description)
+                    task.setTitle(title: title)
+                    task.setDueDate(date: due_date)
+                    task.setDescription(description: description)
                     Task.addTask(task: task)
 
                     Task.printAllTasks()

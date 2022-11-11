@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TaskHomeView: View {
     let task: Task
-//    @State var complete: Bool = 
+//    @State var complete: Bool =
+//    @StateObject var t = Task() = task
     
     var body: some View {
         

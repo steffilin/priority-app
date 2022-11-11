@@ -33,6 +33,16 @@ class Task : Identifiable, ObservableObject {
         self.title = title
     }
     
+    func setDueDate(date: Date) {
+        self.due_date = date
+    }
+    
+    func setDescription(description: String) {
+        self.description = description
+    }
+
+
+    
     func getCompleted() -> Bool {
         return self.completed
     }
@@ -87,17 +97,17 @@ class Task : Identifiable, ObservableObject {
     }
     
     
-    struct Data {
-        var title: String = ""
-        var due_date: Date = Date()
-        var description: String = ""
-        var completed: Bool = false
-        
-    }
-    
-    var data: Data {
-        Data(title: title, due_date: due_date, description: description)
-    }
+//    struct Data {
+//        var title: String = ""
+//        var due_date: Date = Date()
+//        var description: String = ""
+//        var completed: Bool = false
+//        
+//    }
+//    
+//    var data: Data {
+//        Data(title: title, due_date: due_date, description: description)
+//    }
     
     
     

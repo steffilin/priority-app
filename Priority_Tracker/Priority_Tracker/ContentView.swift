@@ -14,6 +14,10 @@ struct ContentView: View {
     
     
     let tasks: [Task]
+//    ForEach(tasks, id: \.id) {task in
+//        @EnvironmentObject var task: Task
+//    }
+
     
     
     var body: some View {
