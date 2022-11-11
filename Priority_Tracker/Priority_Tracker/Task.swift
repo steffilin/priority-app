@@ -71,10 +71,12 @@ class Task : Identifiable, ObservableObject {
     
     class func addTask(task: Task) {
         tasks.append(task)
-        //        isEmpty = false
-        //        numTasks += 1
-        //sort the tasks based on priority
-        //update the home page with the task in it
+        //need to reorder tasks
+        for t in tasks {
+            if task.due_date < t.due_date {
+                //reorder tasks
+            }
+        }
     }
     
     class func getTask(task: Task) {
