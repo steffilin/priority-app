@@ -70,13 +70,21 @@ class Task : Identifiable, ObservableObject {
     }
     
     class func addTask(task: Task) {
-        tasks.append(task)
+//        tasks.append(task)
         //need to reorder tasks
-        for t in tasks {
-            if task.due_date < t.due_date {
-                //reorder tasks
+        if tasks.isEmpty {
+            tasks.append(task)
+        } else {
+            for i in stride(from: tasks.count - 1, through: 0, by: -1) {
+                if task.due_date > tasks[i].due_date {
+                    tasks.insert(task, at: i + 1)
+                    break
+                } else if i == 0 {
+                    tasks.insert(task, at: 0)
+                }
             }
         }
+        
     }
     
     class func getTask(task: Task) {
