@@ -8,17 +8,40 @@
 import Foundation
 
 
-class Task : Identifiable, ObservableObject {
+class Task : Identifiable, ObservableObject, Codable {
+    
+    enum CodingKeys: CodingKey {
+        case title
+        case due_date
+        case description
+        case completed
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        title = try container.decode(String.self, forKey: .title)
+        due_date = try container.decode(Date.self, forKey: .due_date)
+        description = try container.decode(String.self, forKey: .description)
+        completed = try container.decode(Bool.self, forKey: .completed)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(title, forKey: .title)
+        try container.encode(due_date, forKey: .due_date)
+        try container.encode(description, forKey: .description)
+        try container.encode(completed, forKey: .completed)
+    }
     
     @Published var title: String
     @Published var due_date: Date
     @Published var description: String
-    @Published var completed: Bool = false
+    @Published var completed: Bool
     
     
     //    static var isEmpty: Bool = true
     
-    static var tasks: Array<Task> = []
+//    static var tasks: Array<Task> = []
     
     //    static var numTasks: Int = 0
     
@@ -26,6 +49,7 @@ class Task : Identifiable, ObservableObject {
         self.title = title
         self.due_date = due_date
         self.description = description
+        self.completed = false
     }
     
     
@@ -49,11 +73,6 @@ class Task : Identifiable, ObservableObject {
     
     func changeCompletion() {
         self.completed.toggle()
-//        if self.completed {
-//            self.completed = false
-//        } else {
-//            self.completed = true
-//        }
     }
     
     func printTask() {
@@ -65,13 +84,33 @@ class Task : Identifiable, ObservableObject {
     
 
     
-    class func getTasks() -> Array<Task> {
-        return tasks
-    }
+//    class func getTasks() -> Array<Task> {
+//        return tasks
+//    }
     
-    class func addTask(task: Task) {
+//    class func addTask(task: Task) {
+////        tasks.append(task)
+//        //need to reorder tasks
+//
+//        if tasks.isEmpty {
+//            tasks.append(task)
+//        } else {
+//            for i in stride(from: tasks.count - 1, through: 0, by: -1) {
+//                if task.due_date > tasks[i].due_date {
+//                    tasks.insert(task, at: i + 1)
+//                    break
+//                } else if i == 0 {
+//                    tasks.insert(task, at: 0)
+//                }
+//            }
+//        }
+//
+//    }
+    
+    class func addTask(task: Task, store: [Task]) -> [Task] {
 //        tasks.append(task)
         //need to reorder tasks
+        var tasks = store
         if tasks.isEmpty {
             tasks.append(task)
         } else {
@@ -84,6 +123,8 @@ class Task : Identifiable, ObservableObject {
                 }
             }
         }
+//        store.setTasks(tasklist: tasks)
+        return tasks
         
     }
     
@@ -91,20 +132,20 @@ class Task : Identifiable, ObservableObject {
         //
     }
     
-    class func printAllTasks() {
-        //        let vals = tasks.values
-        for t in tasks {
-            t.printTask()
-        }
-    }
-    
-    class func getNumTasks() -> Int{
-        return tasks.count
-    }
-    
-    class func empty() -> Bool {
-        return tasks.isEmpty
-    }
+//    class func printAllTasks() {
+//        //        let vals = tasks.values
+//        for t in tasks {
+//            t.printTask()
+//        }
+//    }
+//
+//    class func getNumTasks() -> Int{
+//        return tasks.count
+//    }
+//
+//    class func empty() -> Bool {
+//        return tasks.isEmpty
+//    }
     
     
 //    struct Data {

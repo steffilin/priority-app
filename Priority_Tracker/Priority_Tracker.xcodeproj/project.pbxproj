@@ -24,6 +24,8 @@
 		2D5809D829068C7C00B777D6 /* SF-Pro-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D5809D729068C7C00B777D6 /* SF-Pro-Display-Heavy.otf */; };
 		2D5809DA29068C8C00B777D6 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D5809D929068C8C00B777D6 /* SF-Pro-Text-Light.otf */; };
 		2D5809DC29068C9900B777D6 /* SF-Pro-Text-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2D5809DB29068C9900B777D6 /* SF-Pro-Text-Thin.otf */; };
+		2DCC3BF5291F7C33006AF187 /* ToggleCheckmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC3BF4291F7C33006AF187 /* ToggleCheckmark.swift */; };
+		2DCC3BF9291F97DC006AF187 /* TaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC3BF8291F97DC006AF187 /* TaskStore.swift */; };
 		2DCE8F1E29088DD600576682 /* SwitchTaskCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCE8F1D29088DD600576682 /* SwitchTaskCompletion.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		2D5809D729068C7C00B777D6 /* SF-Pro-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Heavy.otf"; sourceTree = "<group>"; };
 		2D5809D929068C8C00B777D6 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		2D5809DB29068C9900B777D6 /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
+		2DCC3BF4291F7C33006AF187 /* ToggleCheckmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCheckmark.swift; sourceTree = "<group>"; };
+		2DCC3BF8291F97DC006AF187 /* TaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStore.swift; sourceTree = "<group>"; };
 		2DCE8F1D29088DD600576682 /* SwitchTaskCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTaskCompletion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +135,8 @@
 				2D5809C629068A5F00B777D6 /* TaskView.swift */,
 				2D5809BC29068A5F00B777D6 /* TextEditorWithPlaceholder.swift */,
 				2DCE8F1D29088DD600576682 /* SwitchTaskCompletion.swift */,
+				2DCC3BF4291F7C33006AF187 /* ToggleCheckmark.swift */,
+				2DCC3BF8291F97DC006AF187 /* TaskStore.swift */,
 			);
 			path = Priority_Tracker;
 			sourceTree = "<group>";
@@ -297,6 +303,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCE8F1E29088DD600576682 /* SwitchTaskCompletion.swift in Sources */,
+				2DCC3BF5291F7C33006AF187 /* ToggleCheckmark.swift in Sources */,
+				2DCC3BF9291F97DC006AF187 /* TaskStore.swift in Sources */,
 				2D5809D229068A5F00B777D6 /* TaskView.swift in Sources */,
 				2D5809C929068A5F00B777D6 /* TextEditorWithPlaceholder.swift in Sources */,
 				2D5809CA29068A5F00B777D6 /* Colors.swift in Sources */,

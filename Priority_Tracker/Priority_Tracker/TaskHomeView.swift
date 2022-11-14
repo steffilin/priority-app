@@ -9,31 +9,27 @@ import SwiftUI
 
 struct TaskHomeView: View {
     let task: Task
-//    @State var complete: Bool =
+//    let completed: Bool
+//    @Binding var complete: Bool
+    
+//    @Binding var completed : Bool
+    
 //    @StateObject var t = Task() = task
     
     var body: some View {
         
         HStack {
             
-            //the check box button
-            //maybe don't make it a button?
-            
-            
-            
-            
-            //if task.completed --> checked view
-            //else --> circle view
-            //create separate views
-            //.onTapGesture {change the view}
-           
-
+//            Toggle(isOn: $completed, label: {
+//
+//            })
+//            .toggleStyle(ToggleCheckmark())
             
             Button (action: {
                 task.changeCompletion()
                 //write a switchcheck swift class in a different file??? call the func here
-                
-                Task.printAllTasks()
+
+//                Task.printAllTasks()
             }) {
                 if task.completed {
                     Image(systemName: "checkmark.circle")
@@ -48,12 +44,6 @@ struct TaskHomeView: View {
                         .padding(.leading)
                 }
             }
-            
-            
-            
-            
-                
-            
             
            
             
@@ -75,8 +65,9 @@ struct TaskHomeView: View {
 }
 
 struct TaskHomeView_Previews: PreviewProvider {
-    
+
     static var task = Task.sampleData[0]
+    var completed = task.completed
     static var previews: some View {
         TaskHomeView(task: task)
 //            .background(Color.accentColor)

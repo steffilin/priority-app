@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct TaskView: View {
-//    @State private var task = Task.Data()
+
     @StateObject var task = Task(title: "", due_date: Date(), description: "")
     @State var title: String = ""
     @State var due_date: Date = Date()
     @State var description: String = ""
-//    @State var placeholder: String = "Description"
+    @State var completed: Bool = false
     
     @Environment(\.presentationMode) var presentation
     @State var showHome = false
+    
+    
+    @EnvironmentObject var store: TaskStore
+    @Binding var tasks: [Task]
+    
+    @Environment(\.scenePhase) private var scenePhase
+    let saveAction: ()->Void
     
     var body: some View {
             VStack {
@@ -57,19 +64,11 @@ struct TaskView: View {
                         .foregroundColor(Color.bg_gray)
                     VStack {
                         TextEditorWithPlaceholder(text: $description)
-
-                        
-                            
-                        
                     }
                 }
                 
                 .padding(.bottom)
                 
-//                NavigationLink(destination: ContentView(tasks: Task.tasks)) {
-//                    Image(systemName: "plus.circle.fill")
-//                        .font(.system(size: 56))
-//                        .padding(.trailing)
                 }
                 Button("Add") {
                     
@@ -78,9 +77,11 @@ struct TaskView: View {
                     task.setTitle(title: title)
                     task.setDueDate(date: due_date)
                     task.setDescription(description: description)
-                    Task.addTask(task: task)
+//                    Task.addTask(task: task)
+//                    Task.addTask(task: task, store: tasks)
+                    tasks = Task.addTask(task: task, store: tasks)
 
-                    Task.printAllTasks()
+//                    Task.printAllTasks()
                     showHome.toggle()
 //                    presentation.wrappedValue.dismiss()
                     
@@ -98,7 +99,13 @@ struct TaskView: View {
 //                        withoutAnimation {
 //                            ContentView(tasks: Task.tasks)
 //                        }
-                        ContentView(tasks: Task.tasks)
+                        ContentView(tasks: $tasks) {
+                            TaskStore.save(tasks: store.tasks) { result in
+                                if case .failure(let error) = result {
+                                    fatalError(error.localizedDescription)
+                                }
+                            }
+                        }
                         
                     }
                     
@@ -106,7 +113,9 @@ struct TaskView: View {
                 
                 Spacer()
                 
-            
+            .onChange(of: scenePhase) { phase in
+                if phase == .inactive { saveAction() }
+            }
         
             }
         
@@ -117,7 +126,8 @@ struct TaskView: View {
 
 struct TaskView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskView()
+        TaskView(tasks: .constant(Task.sampleData), saveAction: {})
+            .environmentObject(TaskStore())
         
     }
 }

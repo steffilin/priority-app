@@ -13,12 +13,13 @@ struct ContentView: View {
     
 //    @Binding var showHome:Bool
     
-    let tasks: [Task]
-//    ForEach(tasks, id: \.id) {task in
-//        @EnvironmentObject var task: Task
-//    }
+//    let tasks: [Task]
+    @Environment(\.scenePhase) private var scenePhase
 
-    
+    @Binding var tasks: [Task]
+    @EnvironmentObject var store: TaskStore
+    let saveAction: ()->Void
+
     
     var body: some View {
         
@@ -46,7 +47,7 @@ struct ContentView: View {
                 
                 HStack {
                     Spacer()
-                    NavigationLink(destination: TaskView()) {
+                    NavigationLink(destination: TaskView(tasks: $tasks, saveAction: {}).environmentObject(store)) {
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 56))
                             .padding(.trailing)
@@ -56,15 +57,19 @@ struct ContentView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .padding()
         
-    .padding()
-        
-        
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { saveAction() }
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+  
+    
     static var previews: some View {
-        ContentView(tasks: Task.tasks)
+        ContentView(tasks: .constant(Task.sampleData),  saveAction: {})
+            .environmentObject(TaskStore())
     }
 }
