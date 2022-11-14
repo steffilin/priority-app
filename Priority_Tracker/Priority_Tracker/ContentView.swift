@@ -37,6 +37,11 @@ struct ContentView: View {
                         TaskHomeView(task: task)
                             .listRowSeparator(.hidden)
                     }
+                    .onDelete { indexSet in
+                        tasks.remove(atOffsets: indexSet)
+                    
+                    }.tint(.accentColor)
+                    
                     
                     
                 }
