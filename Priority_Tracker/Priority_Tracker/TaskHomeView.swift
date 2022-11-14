@@ -14,7 +14,6 @@ struct TaskHomeView: View {
     
 //    @Binding var completed : Bool
     
-//    @StateObject var t = Task() = task
     
     var body: some View {
         
@@ -58,6 +57,7 @@ struct TaskHomeView: View {
             }
             .padding(.leading)
             .padding(.trailing)
+            
         }
         
         

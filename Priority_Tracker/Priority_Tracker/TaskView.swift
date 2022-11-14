@@ -17,6 +17,7 @@ struct TaskView: View {
     
     @Environment(\.presentationMode) var presentation
     @State var showHome = false
+    @FocusState private var textIsFocused: Bool
     
     
     @EnvironmentObject var store: TaskStore
@@ -26,13 +27,13 @@ struct TaskView: View {
     let saveAction: ()->Void
     
     var body: some View {
+        ScrollView {
             VStack {
                 Text("Add a Task")
                     .font(Font.mainTitle)
                     .multilineTextAlignment(.leading)
                     .frame(width: 318.0, height: 50.0, alignment: .leading)
                     .padding(.bottom)
-                    
                 
                 ZStack {
                     Rectangle()
@@ -41,6 +42,7 @@ struct TaskView: View {
                         .foregroundColor(Color.bg_gray)
                     TextField("Title", text: $title)
                         .frame(width: 318.0 - 28, height: 50.0 - 26)
+                        .focused($textIsFocused)
                 }
                 .padding(.bottom)
                 
@@ -50,8 +52,8 @@ struct TaskView: View {
                         .cornerRadius(10)
                         .foregroundColor(Color.bg_gray)
                     DatePicker("Due", selection: $due_date)
-                        
                         .frame(width: 318.0 - 28, height: 50.0 - 26)
+                        .focused($textIsFocused)
 
                 }
                 
@@ -64,6 +66,7 @@ struct TaskView: View {
                         .foregroundColor(Color.bg_gray)
                     VStack {
                         TextEditorWithPlaceholder(text: $description)
+                            .focused($textIsFocused)
                     }
                 }
                 
@@ -72,20 +75,15 @@ struct TaskView: View {
                 }
                 Button("Add") {
                     
-                    
-//                    let task = Task(title: title, due_date: due_date, description: description)
                     task.setTitle(title: title)
                     task.setDueDate(date: due_date)
                     task.setDescription(description: description)
-//                    Task.addTask(task: task)
-//                    Task.addTask(task: task, store: tasks)
                     tasks = Task.addTask(task: task, store: tasks)
 
-//                    Task.printAllTasks()
+    //                    Task.printAllTasks()
                     showHome.toggle()
-//                    presentation.wrappedValue.dismiss()
-                    
-//                    ContentView.showingHome = false
+    //                    presentation.wrappedValue.dismiss()
+    //                    ContentView.showingHome = false
                     
                 }.padding()
                     .frame(width: 137.0, height: 50.0)
@@ -96,9 +94,9 @@ struct TaskView: View {
                     .frame(width: 318.0, height: 50.0, alignment: .leading)
                     .disabled(title.isEmpty)
                     .fullScreenCover(isPresented: $showHome) {
-//                        withoutAnimation {
-//                            ContentView(tasks: Task.tasks)
-//                        }
+    //                        withoutAnimation {
+    //                            ContentView(tasks: Task.tasks)
+    //                        }
                         ContentView(tasks: $tasks) {
                             TaskStore.save(tasks: store.tasks) { result in
                                 if case .failure(let error) = result {
@@ -116,12 +114,16 @@ struct TaskView: View {
             .onChange(of: scenePhase) { phase in
                 if phase == .inactive { saveAction() }
             }
-        
-            }
-        
-    
+        }
+        .onTapGesture {
+            hideKeyboard()
+            textIsFocused = false
+        }
         
     }
+    
+     
+}
 
 
 struct TaskView_Previews: PreviewProvider {

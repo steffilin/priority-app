@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D3C30C6292239A800551D2A /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C30C5292239A800551D2A /* HideKeyboard.swift */; };
 		2D5809A429068A3500B777D6 /* Priority_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5809A329068A3500B777D6 /* Priority_TrackerTests.swift */; };
 		2D5809AE29068A3500B777D6 /* Priority_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5809AD29068A3500B777D6 /* Priority_TrackerUITests.swift */; };
 		2D5809B029068A3500B777D6 /* Priority_TrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5809AF29068A3500B777D6 /* Priority_TrackerUITestsLaunchTests.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D3C30C5292239A800551D2A /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		2D58098F29068A3400B777D6 /* Priority_Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Priority_Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D58099F29068A3500B777D6 /* Priority_TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Priority_TrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D5809A329068A3500B777D6 /* Priority_TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority_TrackerTests.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				2DCE8F1D29088DD600576682 /* SwitchTaskCompletion.swift */,
 				2DCC3BF4291F7C33006AF187 /* ToggleCheckmark.swift */,
 				2DCC3BF8291F97DC006AF187 /* TaskStore.swift */,
+				2D3C30C5292239A800551D2A /* HideKeyboard.swift */,
 			);
 			path = Priority_Tracker;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				2D5809CA29068A5F00B777D6 /* Colors.swift in Sources */,
 				2D5809D029068A5F00B777D6 /* FontStyles.swift in Sources */,
 				2D5809CD29068A5F00B777D6 /* Priority_TrackerApp.swift in Sources */,
+				2D3C30C6292239A800551D2A /* HideKeyboard.swift in Sources */,
 				2D5809D129068A5F00B777D6 /* TaskHomeView.swift in Sources */,
 				2D5809CB29068A5F00B777D6 /* ContentView.swift in Sources */,
 				2D5809CE29068A5F00B777D6 /* Task.swift in Sources */,
