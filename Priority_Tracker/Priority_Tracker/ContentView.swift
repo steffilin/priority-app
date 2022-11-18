@@ -30,7 +30,7 @@ struct ContentView: View {
                     
                     
                     ForEach(Array(tasks.enumerated()), id: \.offset) { task, element in
-                        TaskHomeView(task: tasks[task], completed: tasks[task].getCompleted(), count: task) {
+                        TaskHomeView(task: $tasks[task], completed: tasks[task].getCompleted(), count: task) {
                             TaskStore.save(tasks: store.tasks) { result in
                                 if case .failure(let error) = result {
                                     fatalError(error.localizedDescription)
