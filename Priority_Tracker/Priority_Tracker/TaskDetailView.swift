@@ -10,6 +10,9 @@ import SwiftUI
 struct TaskDetailView: View {
     
     @Binding var task: Task
+    
+    @State var title: String = ""
+    
     @EnvironmentObject var store: TaskStore
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.presentationMode) var presentation
@@ -19,7 +22,9 @@ struct TaskDetailView: View {
 
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TextField("Title", text: $title)
+            .frame(width: 318.0 - 28, height: 50.0 - 26)
+            .focused($textIsFocused)
         
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }

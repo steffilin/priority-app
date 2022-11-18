@@ -9,10 +9,7 @@ import SwiftUI
 
 struct TaskHomeView: View {
     @Binding var task: Task
-//    let completed: Bool
-//    @Binding var complete: Bool
-    
-//    @Binding var completed : Bool
+
     @EnvironmentObject var store: TaskStore
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.presentationMode) var presentation
@@ -48,6 +45,7 @@ struct TaskHomeView: View {
                         .padding(.leading)
                 }
             }
+            .buttonStyle(BorderlessButtonStyle())
             
            
             
@@ -57,10 +55,12 @@ struct TaskHomeView: View {
                 } label: {
                     Rectangle()
                         .frame(width: 249, height: 49)
-                        .cornerRadius(10)
-                        .foregroundColor(Color.solid_accent)
-                        .opacity(1 - 0.1 * Double(count + 1))
                 }
+                .frame(width: 249, height: 49)
+                .background(Color.solid_accent)
+                .cornerRadius(10)
+                .opacity(1 - 0.1 * Double(count + 1))
+                .buttonStyle(BorderlessButtonStyle())
                 .fullScreenCover(isPresented: $showDetail) {
                     TaskDetailView(task: $task) {
                         TaskStore.save(tasks: store.tasks) { result in
@@ -69,15 +69,10 @@ struct TaskHomeView: View {
                             }
                         }
                     }
-                    
-                }
 
+                }
                 
-//                Rectangle()
-//                    .frame(width: 249, height: 49)
-//                    .cornerRadius(10)
-//                    .foregroundColor(Color.solid_accent)
-//                    .opacity(1 - 0.1 * Double(count + 1))
+
                 Text(task.title)
                     .frame(width: 249 - 28, height: 49 - 28, alignment: .leading)
                     .font(Font.normalText)
