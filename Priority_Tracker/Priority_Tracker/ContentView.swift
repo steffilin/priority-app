@@ -9,17 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-//    @State public static var showingHome: Bool = true
-    
-//    @Binding var showHome:Bool
-    
-//    let tasks: [Task]
     @Environment(\.scenePhase) private var scenePhase
 
     @Binding var tasks: [Task]
     @EnvironmentObject var store: TaskStore
     let saveAction: ()->Void
-//    @State var count = 0
 
     
     var body: some View {

@@ -16,7 +16,6 @@ struct TaskHomeView: View {
     @EnvironmentObject var store: TaskStore
     @Environment(\.scenePhase) private var scenePhase
     @State var completed: Bool
-//    @Binding var count : Int
     let count: Int
     let saveAction: ()->Void
     
@@ -59,7 +58,7 @@ struct TaskHomeView: View {
                     .frame(width: 249, height: 49)
                     .cornerRadius(10)
                     .foregroundColor(Color.solid_accent)
-                    .opacity(1 - 0.1 * Double(count))
+                    .opacity(1 - 0.1 * Double(count + 1))
                 Text(task.title)
                     .frame(width: 249 - 28, height: 49 - 28, alignment: .leading)
                     .font(Font.normalText)
