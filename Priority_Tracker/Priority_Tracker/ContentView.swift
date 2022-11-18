@@ -19,6 +19,7 @@ struct ContentView: View {
     @Binding var tasks: [Task]
     @EnvironmentObject var store: TaskStore
     let saveAction: ()->Void
+//    @State var count = 0
 
     
     var body: some View {
@@ -33,8 +34,9 @@ struct ContentView: View {
                 
                 List {
                     
-                    ForEach(tasks, id: \.id) { task in
-                        TaskHomeView(task: task, completed: task.getCompleted()) {
+                    
+                    ForEach(Array(tasks.enumerated()), id: \.offset) { task, element in
+                        TaskHomeView(task: tasks[task], completed: tasks[task].getCompleted(), count: task) {
                             TaskStore.save(tasks: store.tasks) { result in
                                 if case .failure(let error) = result {
                                     fatalError(error.localizedDescription)
@@ -42,11 +44,29 @@ struct ContentView: View {
                             }
                         }
                         .listRowSeparator(.hidden)
+                        
                     }
                     .onDelete { indexSet in
                         tasks.remove(atOffsets: indexSet)
                     
-                    }.tint(.accentColor)
+                    }
+                    
+                    
+//                    ForEach(tasks, id: \.id) { task in
+//                        TaskHomeView(task: task, completed: task.getCompleted(), count: $count) {
+//                            TaskStore.save(tasks: store.tasks) { result in
+//                                if case .failure(let error) = result {
+//                                    fatalError(error.localizedDescription)
+//                                }
+//                            }
+//                        }
+//                        .listRowSeparator(.hidden)
+//
+//                    }
+//                    .onDelete { indexSet in
+//                        tasks.remove(atOffsets: indexSet)
+//
+//                    }
                     
                     
                     

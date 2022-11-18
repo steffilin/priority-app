@@ -10,4 +10,5 @@ import SwiftUI
 
 extension Color {
     static let bg_gray = Color("GrayBackground")
+    static let solid_accent = Color("SolidAccentColor")
 }

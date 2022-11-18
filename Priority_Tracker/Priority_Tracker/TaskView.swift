@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TaskView: View {
+    
 
     @StateObject var task = Task(title: "", due_date: Date(), description: "")
     @State var title: String = ""

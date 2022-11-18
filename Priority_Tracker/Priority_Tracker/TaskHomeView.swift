@@ -16,9 +16,9 @@ struct TaskHomeView: View {
     @EnvironmentObject var store: TaskStore
     @Environment(\.scenePhase) private var scenePhase
     @State var completed: Bool
+//    @Binding var count : Int
+    let count: Int
     let saveAction: ()->Void
-    
-   
     
     
     var body: some View {
@@ -58,7 +58,8 @@ struct TaskHomeView: View {
                 Rectangle()
                     .frame(width: 249, height: 49)
                     .cornerRadius(10)
-                    .foregroundColor(Color.accentColor)
+                    .foregroundColor(Color.solid_accent)
+                    .opacity(1 - 0.1 * Double(count))
                 Text(task.title)
                     .frame(width: 249 - 28, height: 49 - 28, alignment: .leading)
                     .font(Font.normalText)
@@ -79,7 +80,7 @@ struct TaskHomeView_Previews: PreviewProvider {
     static var task = Task.sampleData[0]
     var completed = task.completed
     static var previews: some View {
-        TaskHomeView(task: task, completed: false, saveAction: {})
+        TaskHomeView(task: task, completed: false, count: 0, saveAction: {})
             .environmentObject(TaskStore())
 //            .background(Color.accentColor)
 //            .previewLayout(.sizeThatFits)
