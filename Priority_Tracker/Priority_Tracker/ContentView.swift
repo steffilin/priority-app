@@ -34,8 +34,14 @@ struct ContentView: View {
                 List {
                     
                     ForEach(tasks, id: \.id) { task in
-                        TaskHomeView(task: task)
-                            .listRowSeparator(.hidden)
+                        TaskHomeView(task: task, completed: task.getCompleted()) {
+                            TaskStore.save(tasks: store.tasks) { result in
+                                if case .failure(let error) = result {
+                                    fatalError(error.localizedDescription)
+                                }
+                            }
+                        }
+                        .listRowSeparator(.hidden)
                     }
                     .onDelete { indexSet in
                         tasks.remove(atOffsets: indexSet)

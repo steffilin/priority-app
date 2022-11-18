@@ -13,6 +13,12 @@ struct TaskHomeView: View {
 //    @Binding var complete: Bool
     
 //    @Binding var completed : Bool
+    @EnvironmentObject var store: TaskStore
+    @Environment(\.scenePhase) private var scenePhase
+    @State var completed: Bool
+    let saveAction: ()->Void
+    
+   
     
     
     var body: some View {
@@ -25,12 +31,14 @@ struct TaskHomeView: View {
 //            .toggleStyle(ToggleCheckmark())
             
             Button (action: {
+//                task.changeCompletion()
+                completed.toggle()
                 task.changeCompletion()
                 //write a switchcheck swift class in a different file??? call the func here
 
 //                Task.printAllTasks()
             }) {
-                if task.completed {
+                if completed {
                     Image(systemName: "checkmark.circle")
                         .font(.system(size: 25))
                         .foregroundColor(.accentColor)
@@ -59,7 +67,9 @@ struct TaskHomeView: View {
             .padding(.trailing)
             
         }
-        
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { saveAction() }
+        }
         
     }
 }
@@ -69,7 +79,8 @@ struct TaskHomeView_Previews: PreviewProvider {
     static var task = Task.sampleData[0]
     var completed = task.completed
     static var previews: some View {
-        TaskHomeView(task: task)
+        TaskHomeView(task: task, completed: false, saveAction: {})
+            .environmentObject(TaskStore())
 //            .background(Color.accentColor)
 //            .previewLayout(.sizeThatFits)
     }
