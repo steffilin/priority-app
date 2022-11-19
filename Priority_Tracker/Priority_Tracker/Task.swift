@@ -64,6 +64,13 @@ class Task : Identifiable, ObservableObject, Codable {
     func setDescription(description: String) {
         self.description = description
     }
+    
+    
+    func editTask(title: String, due_date: Date, description: String) {
+        setTitle(title: title)
+        setDueDate(date: due_date)
+        setDescription(description: description)
+    }
 
 
     
