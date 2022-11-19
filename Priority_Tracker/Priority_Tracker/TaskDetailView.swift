@@ -22,10 +22,25 @@ struct TaskDetailView: View {
 
     
     var body: some View {
-        TextField("Title", text: $title)
-            .frame(width: 318.0 - 28, height: 50.0 - 26)
-            .focused($textIsFocused)
         
+        VStack {
+            Text("Task Details")
+                .font(Font.mainTitle)
+                .multilineTextAlignment(.leading)
+                .frame(width: 318.0, height: 50.0, alignment: .leading)
+                .padding(.bottom)
+            ZStack {
+                Rectangle()
+                    .frame(width: 318, height: 50)
+                    .cornerRadius(10)
+                    .foregroundColor(Color.bg_gray)
+                TextField("Title", text: $title)
+                    .frame(width: 318.0 - 28, height: 50.0 - 26)
+                    .focused($textIsFocused)
+            }
+            .padding(.bottom)
+           
+        }
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }
         }

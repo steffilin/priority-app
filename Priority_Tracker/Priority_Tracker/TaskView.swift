@@ -44,6 +44,7 @@ struct TaskView: View {
                     TextField("Title", text: $title)
                         .frame(width: 318.0 - 28, height: 50.0 - 26)
                         .focused($textIsFocused)
+                        .textSelection(.enabled)
                 }
                 .padding(.bottom)
                 
@@ -68,6 +69,7 @@ struct TaskView: View {
                     VStack {
                         TextEditorWithPlaceholder(text: $description)
                             .focused($textIsFocused)
+                            .textSelection(.enabled)
                     }
                 }
                 
