@@ -36,10 +36,11 @@ struct TaskHomeView: View {
                     Image(systemName: "checkmark.circle")
                         .font(.system(size: 25))
                         .foregroundColor(.accentColor)
+                        .frame(width: 25, height: 25)
                         .padding(.leading)
                 } else {
                     Circle()
-                        .strokeBorder(Color.accentColor, lineWidth: 1)
+                        .strokeBorder(Color.accentColor, lineWidth: 2)
                         .background(Circle().fill(Color.bg_gray))
                         .frame(width: 25, height: 25)
                         .padding(.leading)
