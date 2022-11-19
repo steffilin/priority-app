@@ -63,7 +63,7 @@ struct TaskHomeView: View {
                 .opacity(1 - 0.1 * Double(count + 1))
                 .buttonStyle(BorderlessButtonStyle())
                 .fullScreenCover(isPresented: $showDetail) {
-                    TaskDetailView(task: $task) {
+                    TaskDetailView(task: $task, tasks: $store.tasks) {
                         TaskStore.save(tasks: store.tasks) { result in
                             if case .failure(let error) = result {
                                 fatalError(error.localizedDescription)
