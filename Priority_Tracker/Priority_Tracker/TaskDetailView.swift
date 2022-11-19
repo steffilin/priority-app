@@ -30,6 +30,7 @@ struct TaskDetailView: View {
                     .multilineTextAlignment(.leading)
                     .frame(width: 318.0, height: 50.0, alignment: .leading)
                     .padding(.bottom)
+                    .padding(.top)
                 ZStack {
                     Rectangle()
                         .frame(width: 318, height: 50)
