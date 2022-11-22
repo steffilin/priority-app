@@ -27,8 +27,6 @@ struct ContentView: View {
                     .ignoresSafeArea(edges: .top)
                 
                 List {
-                    
-                    
                     ForEach(Array(tasks.enumerated()), id: \.offset) { task, element in
                         TaskHomeView(task: $tasks[task], completed: tasks[task].getCompleted(), count: task) {
                             TaskStore.save(tasks: store.tasks) { result in

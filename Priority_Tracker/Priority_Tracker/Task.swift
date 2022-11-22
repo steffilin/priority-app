@@ -71,6 +71,14 @@ class Task : Identifiable, ObservableObject, Codable {
         setDueDate(date: due_date)
         setDescription(description: description)
     }
+    
+    func calculateOpacity(count: Int) -> Double {
+        var opac = 1 - 0.1 * Double(count + 1)
+        if opac <= 0 {
+            opac = 0.1
+        }
+        return opac
+    }
 
 
     

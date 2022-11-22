@@ -60,7 +60,7 @@ struct TaskHomeView: View {
                 .frame(width: 249, height: 49)
                 .background(Color.solid_accent)
                 .cornerRadius(10)
-                .opacity(1 - 0.1 * Double(count + 1))
+                .opacity(task.calculateOpacity(count: count))
                 .buttonStyle(BorderlessButtonStyle())
                 .fullScreenCover(isPresented: $showDetail) {
                     TaskDetailView(task: $task, tasks: $store.tasks) {
